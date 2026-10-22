@@ -1,0 +1,6 @@
+{
+  "name": "dailytechrader",
+  "description": "ENGINEERING & CONSUMER TECH JOURNAL - PUBLISHED DAILY. In-depth analysis of consumer gadgets, artificial intelligence, software, and smart home innovations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

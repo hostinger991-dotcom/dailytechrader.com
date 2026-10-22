@@ -1,0 +1,6 @@
+# dailytechrader Official app-ads.txt (Authorized Digital Sellers for Apps)
+# Conforming to IAB Tech Lab App-Ads.txt Specification v1.1
+google.com, pub-9296514976000000, DIRECT, f08c47fec0942fa0
+google.com, pub-1038472910482019, RESELLER, f08c47fec0942fa0
+appnexus.com, 14234, DIRECT, f5ab79cb980f9e30
+rubiconproject.com, 18924, RESELLER, 0bfd66d529a73806
