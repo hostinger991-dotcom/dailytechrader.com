@@ -15,6 +15,7 @@ import {
   Layers, CheckCircle2, ChevronRight, Bookmark, Search,
   Award, Zap, Compass, Lock, Home as HomeIcon
 } from 'lucide-react';
+import { resolveImageUrl } from './utils/imageUtils';
 
 export default function App() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
@@ -220,10 +221,17 @@ export default function App() {
               <div className="w-full lg:w-1/2">
                 <div className="relative rounded-xl overflow-hidden border border-[#5fdee7]/30 group-hover:border-[#ffcc00] transition-all aspect-video bg-black/60 shadow-xl">
                   <img
-                    src={leadArticle.imageSrc}
+                    src={resolveImageUrl(leadArticle.imageSrc)}
                     alt={leadArticle.title}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const filename = leadArticle.imageSrc.split('/').pop();
+                      if (filename && !target.src.endsWith(`/images/${filename}`)) {
+                        target.src = `/images/${filename}`;
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute top-3 left-3 flex items-center gap-2">

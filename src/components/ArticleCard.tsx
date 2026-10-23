@@ -2,6 +2,7 @@ import React from 'react';
 import { Article } from '../types/article';
 import { InfographicHero } from './InfographicHero';
 import { Clock, Calendar, ArrowRight, Bookmark, BookmarkCheck, CheckCircle2 } from 'lucide-react';
+import { resolveImageUrl } from '../utils/imageUtils';
 
 interface ArticleCardProps {
   article: Article;
@@ -60,11 +61,18 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
       {/* Realistic Photorealistic Infographic Thumbnail Image */}
       <div className="relative z-10 mb-4 rounded-xl overflow-hidden border border-[#5fdee7]/25 group-hover:border-[#ffcc00] transition-colors aspect-video bg-black/60 shadow-md">
         <img
-          src={article.imageSrc}
+          src={resolveImageUrl(article.imageSrc)}
           alt={article.title}
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget;
+            const filename = article.imageSrc.split('/').pop();
+            if (filename && !target.src.endsWith(`/images/${filename}`)) {
+              target.src = `/images/${filename}`;
+            }
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
         <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[10px] font-mono">

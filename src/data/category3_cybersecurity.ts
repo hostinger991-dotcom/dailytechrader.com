@@ -18,7 +18,7 @@ export const category3Articles: Article[] = [
     wordCount: 1260,
     publishDate: '2026-10-21',
     excerpt: 'A technical dissection of ChaCha20-Poly1305 ciphers, diskless volatile RAM-only server nodes, DNS/WebRTC leak vectors, and multi-hop cryptographic routing.',
-    imageSrc: '/src/assets/images/vpn_online_privacy_1792653588328.jpg',
+    imageSrc: '/images/vpn_online_privacy_1792653588328.jpg',
     infographic: {
       promptNumber: 11,
       title: 'BEST VPN FOR ONLINE PRIVACY',
@@ -153,7 +153,7 @@ A robust VPN employs a Kernel-Level Firewall Kill Switch. On Windows, this utili
     wordCount: 1240,
     publishDate: '2026-10-21',
     excerpt: 'An investigative laboratory review analyzing kernel-level EDR drivers, behavioral heuristic engines, ransomware canary traps, and system resource footprints.',
-    imageSrc: '/src/assets/images/antivirus_software_reviews_1792653589884.jpg',
+    imageSrc: '/images/antivirus_software_reviews_1792653589884.jpg',
     infographic: {
       promptNumber: 12,
       title: 'TOP ANTIVIRUS SOFTWARE REVIEWS',
@@ -294,7 +294,7 @@ Modern antivirus web shields analyze web pages at the socket level. When your br
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'An authoritative technical guide covering Windows Performance Analyzer telemetry, disabling telemetry bloatware, configuring NVMe TRIM schedules, and RAM cache management.',
-    imageSrc: '/src/assets/images/speed_up_pc_1792653591209.jpg',
+    imageSrc: '/images/speed_up_pc_1792653591209.jpg',
     infographic: {
       promptNumber: 13,
       title: 'HOW TO SPEED UP WINDOWS PC',
@@ -436,7 +436,7 @@ Finally, enable Hardware-Accelerated GPU Scheduling (HAGS). Found under Settings
     wordCount: 1270,
     publishDate: '2026-10-21',
     excerpt: 'A technical evaluation of zero-knowledge client-side encryption architectures, Argon2id memory-hard key derivation functions, and FIDO2 passkey hardware implementations.',
-    imageSrc: '/src/assets/images/secure_password_managers_1792653592161.jpg',
+    imageSrc: '/images/secure_password_managers_1792653592161.jpg',
     infographic: {
       promptNumber: 14,
       title: 'SECURE PASSWORD MANAGERS',
@@ -581,7 +581,7 @@ KeePassXC is the ultimate choice for absolute data sovereignty. It has no cloud 
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'A tactical blueprint for eliminating corporate surveillance capitalism, submitting automated data broker opt-outs, blocking canvas fingerprinting, and wiping EXIF metadata.',
-    imageSrc: '/src/assets/images/data_privacy_guide_1792653594925.jpg',
+    imageSrc: '/images/data_privacy_guide_1792653594925.jpg',
     infographic: {
       promptNumber: 15,
       title: 'DATA PRIVACY PROTECTION GUIDE',

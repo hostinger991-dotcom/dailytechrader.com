@@ -18,7 +18,7 @@ export const category2Articles: Article[] = [
     wordCount: 1280,
     publishDate: '2026-10-21',
     excerpt: 'A comprehensive technical audit of Diffusion Transformers (DiT), Mixture-of-Experts (MoE) token routing, text-to-video latent physics engines, and sub-200ms real-time audio models.',
-    imageSrc: '/src/assets/images/generative_ai_tools_1792653582374.jpg',
+    imageSrc: '/images/generative_ai_tools_1792653582374.jpg',
     infographic: {
       promptNumber: 6,
       title: 'LATEST GENERATIVE AI TOOLS',
@@ -156,7 +156,7 @@ This autonomous loop redefines developer productivity, moving engineers from rep
     wordCount: 1260,
     publishDate: '2026-10-21',
     excerpt: 'An enterprise evaluation of autonomous executive meeting summaries, semantic document analytics, predictive CRM pipelines, and automated business data visualization.',
-    imageSrc: '/src/assets/images/ai_productivity_tools_1792653584411.jpg',
+    imageSrc: '/images/ai_productivity_tools_1792653584411.jpg',
     infographic: {
       promptNumber: 7,
       title: 'AI PRODUCTIVITY TOOLS FOR BUSINESS',
@@ -292,7 +292,7 @@ By establishing clear AI acceptable-use policies and deploying enterprise-licens
     wordCount: 1270,
     publishDate: '2026-10-21',
     excerpt: 'An aerospace engineering deep dive into solid-state micro-electromechanical LiDAR, edge AI visual SLAM in GPS-denied environments, mesh swarm coordination, and automated docking stations.',
-    imageSrc: '/src/assets/images/autonomous_drone_trends_1792653584913.jpg',
+    imageSrc: '/images/autonomous_drone_trends_1792653584913.jpg',
     infographic: {
       promptNumber: 8,
       title: 'AUTONOMOUS DRONE TECH TRENDS',
@@ -432,7 +432,7 @@ With regulatory bodies progressively granting BVLOS (Beyond Visual Line of Sight
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'A deep architectural comparison of dynamic eager execution in PyTorch 2.0, functional stateless graph compilation in JAX, TensorFlow production serving, and OpenAI Triton GPU kernels.',
-    imageSrc: '/src/assets/images/machine_learning_frameworks_1792653586524.jpg',
+    imageSrc: '/images/machine_learning_frameworks_1792653586524.jpg',
     infographic: {
       promptNumber: 9,
       title: 'TOP MACHINE LEARNING FRAMEWORKS',
@@ -571,7 +571,7 @@ This virtually eliminates internal memory fragmentation, slashing KV cache memor
     wordCount: 1260,
     publishDate: '2026-10-21',
     excerpt: 'An investigation into embodied artificial intelligence, Vision-Language-Action (VLA) foundation models, cycloidal planetary actuators, and tactile dexterity in personal home robotics.',
-    imageSrc: '/src/assets/images/consumer_robotics_future_1792653588512.jpg',
+    imageSrc: '/images/consumer_robotics_future_1792653588512.jpg',
     infographic: {
       promptNumber: 10,
       title: 'FUTURE CONSUMER ROBOTICS',

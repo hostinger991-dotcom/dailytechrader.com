@@ -6,6 +6,7 @@ import {
   CheckCircle2, ThumbsUp, MessageSquare, ArrowLeft, 
   ExternalLink, Layers, ShieldCheck, ChevronRight, Check, Sparkles, Maximize2
 } from 'lucide-react';
+import { resolveImageUrl } from '../utils/imageUtils';
 
 interface ArticleReaderModalProps {
   article: Article;
@@ -332,11 +333,18 @@ export const ArticleReaderModal: React.FC<ArticleReaderModalProps> = ({
 
             <div className="relative rounded-2xl overflow-hidden border border-[#5fdee7]/40 shadow-2xl bg-black group">
               <img
-                src={article.imageSrc}
+                src={resolveImageUrl(article.imageSrc)}
                 alt={article.title}
                 referrerPolicy="no-referrer"
                 className="w-full h-auto object-cover max-h-[520px]"
                 loading="eager"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  const filename = article.imageSrc.split('/').pop();
+                  if (filename && !target.src.endsWith(`/images/${filename}`)) {
+                    target.src = `/images/${filename}`;
+                  }
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs font-mono text-slate-300">

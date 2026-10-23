@@ -18,7 +18,7 @@ export const category4Articles: Article[] = [
     wordCount: 1260,
     publishDate: '2026-10-21',
     excerpt: 'An architectural evaluation of Thread Border Routers, Zigbee coordinator dongles, Z-Wave 800-series sub-GHz penetration, and open-source local Home Assistant hardware.',
-    imageSrc: '/src/assets/images/smart_home_hubs_1792653594586.jpg',
+    imageSrc: '/images/smart_home_hubs_1792653594586.jpg',
     infographic: {
       promptNumber: 16,
       title: 'BEST SMART HOME HUBS',
@@ -157,7 +157,7 @@ The entire loop completes in under 350 milliseconds—faster than cloud-based vo
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'A surveillance engineering breakdown of 1/1.8-inch Sony Starvis 2 image sensors, Power over Ethernet (PoE) installations, on-device AI object classification, and self-hosted NVRs.',
-    imageSrc: '/src/assets/images/security_camera_systems_1792653598512.jpg',
+    imageSrc: '/images/security_camera_systems_1792653598512.jpg',
     infographic: {
       promptNumber: 17,
       title: 'HOME SECURITY CAMERA SYSTEMS',
@@ -297,7 +297,7 @@ Modern proactive security cameras integrate active deterrence suites:
     wordCount: 1270,
     publishDate: '2026-10-21',
     excerpt: 'An enthusiast hardware dissection of 3D V-Cache silicon stacking, PCIe Gen5 14,000 MB/s NVMe storage, ATX 3.1 12V-2x6 power delivery, and custom loop cooling thermodynamics.',
-    imageSrc: '/src/assets/images/nextgen_pc_components_1792653598801.jpg',
+    imageSrc: '/images/nextgen_pc_components_1792653598801.jpg',
     infographic: {
       promptNumber: 18,
       title: 'NEXT GEN PC HARDWARE COMPONENTS',
@@ -437,7 +437,7 @@ Simultaneously, dissipating heat from 300W CPUs and 450W GPUs requires uncomprom
     wordCount: 1240,
     publishDate: '2026-10-21',
     excerpt: 'A network administrator field guide to configuring OpenWrt travel routers, bypassing restrictive hotel captive portals, encrypting public Wi-Fi via WireGuard, and isolating IoT gear.',
-    imageSrc: '/src/assets/images/travel_router_setup_1792653600348.jpg',
+    imageSrc: '/images/travel_router_setup_1792653600348.jpg',
     infographic: {
       promptNumber: 19,
       title: 'PORTABLE TRAVEL ROUTER SETUP',
@@ -580,7 +580,7 @@ The travel router will use the smartphone\'s 5G cellular connection as a primary
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'An environmental engineering analysis of variable-speed inverter compressors, heat pump thermodynamic efficiency, time-of-use (TOU) peak load shifting, and rooftop solar battery synchronization.',
-    imageSrc: '/src/assets/images/energy_saving_appliances_1792653599629.jpg',
+    imageSrc: '/images/energy_saving_appliances_1792653599629.jpg',
     infographic: {
       promptNumber: 20,
       title: 'ENERGY SAVING SMART APPLIANCES',

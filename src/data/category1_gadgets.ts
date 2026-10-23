@@ -18,7 +18,7 @@ export const category1Articles: Article[] = [
     wordCount: 1260,
     publishDate: '2026-10-21',
     excerpt: 'An engineering dissection of modern 3nm mobile silicon architectures, periscope telephoto sensor economics, and mathematical formulas for maximizing manufacturer trade-in subsidies.',
-    imageSrc: '/src/assets/images/best_flagship_deals_1792653575769.jpg',
+    imageSrc: '/images/best_flagship_deals_1792653575769.jpg',
     infographic: {
       promptNumber: 1,
       title: 'BEST FLAGSHIP SMARTPHONE DEALS',
@@ -153,7 +153,7 @@ Before committing to any deal, calculate the Total Cost of Ownership (TCO): TCO 
     wordCount: 1240,
     publishDate: '2026-10-21',
     excerpt: 'Comprehensive laboratory acoustic evaluation of hybrid ANC phase cancellation algorithms, planar magnetic miniature drivers, and LDAC/LC3 codec fidelity.',
-    imageSrc: '/src/assets/images/noise_canceling_earbuds_1792653576363.jpg',
+    imageSrc: '/images/noise_canceling_earbuds_1792653576363.jpg',
     infographic: {
       promptNumber: 2,
       title: 'WIRELESS NOISE CANCELING EARBUDS',
@@ -285,7 +285,7 @@ Meanwhile, Transparency Mode has evolved into an indispensable feature. By sampl
     wordCount: 1250,
     publishDate: '2026-10-21',
     excerpt: 'An investigative hardware analysis exposing GPU Total Graphics Power (TGP) disparities, phase-change thermal interface materials, and panel response times in sub-$1000 gaming notebooks.',
-    imageSrc: '/src/assets/images/budget_gaming_laptops_1792653577136.jpg',
+    imageSrc: '/images/budget_gaming_laptops_1792653577136.jpg',
     infographic: {
       promptNumber: 3,
       title: 'TOP BUDGET GAMING LAPTOPS',
@@ -419,7 +419,7 @@ Similarly, verify the presence of a second M.2 PCIe Gen4 NVMe solid-state drive 
     wordCount: 1230,
     publishDate: '2026-10-21',
     excerpt: 'An exhaustive laboratory torture test analyzing microampere sleep draws, dual-frequency GNSS battery drain, solar photovoltaic harvesting, and hybrid E-Ink vs AMOLED displays.',
-    imageSrc: '/src/assets/images/smartwatch_battery_test_1792653578968.jpg',
+    imageSrc: '/images/smartwatch_battery_test_1792653578968.jpg',
     infographic: {
       promptNumber: 4,
       title: 'SMARTWATCH BATTERY LIFE TEST',
@@ -551,7 +551,7 @@ Conversely, sports watches from Garmin, Coros, and Suunto run custom, determinis
     wordCount: 1220,
     publishDate: '2026-10-21',
     excerpt: 'An engineering blueprint covering Gallium Nitride (GaN) fast chargers, Halbach magnetic ring arrays, 9H tempered aluminosilicate screen protectors, and mobile anamorphic optical glass.',
-    imageSrc: '/src/assets/images/mobile_phone_accessories_1792653580999.jpg',
+    imageSrc: '/images/mobile_phone_accessories_1792653580999.jpg',
     infographic: {
       promptNumber: 5,
       title: 'ESSENTIAL MOBILE ACCESSORIES',
