@@ -191,6 +191,13 @@ export const ArticleReaderModal: React.FC<ArticleReaderModalProps> = ({
               <span>Back to Journal</span>
             </button>
 
+            <span className="hidden md:flex items-center gap-2">
+              <span className="text-xs font-black font-display text-white tracking-tight">
+                dailytech<span className="text-[#5fdee7]">rader</span>
+              </span>
+              <span className="text-slate-600">/</span>
+            </span>
+
             <span className="hidden sm:inline-block px-2.5 py-0.5 rounded text-[11px] font-mono uppercase tracking-wider bg-[#0b2721] text-[#5fdee7] border border-[#5fdee7]/30">
               {article.category}
             </span>

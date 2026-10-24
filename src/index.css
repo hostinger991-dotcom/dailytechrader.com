@@ -77,6 +77,19 @@
   animation: radarSweep 6s linear infinite;
 }
 
+@keyframes logoSweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-logo-sweep {
+  animation: logoSweep 4s linear infinite;
+}
+
 /* SPECIAL HOVER EFFECT:
    Transforms border and background illumination into a vivid,
    glowing FULL YELLOW accent (#ffcc00 / #ffd700) with ultra-smooth CSS transitions.

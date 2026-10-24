@@ -4,6 +4,7 @@ import {
   MapPin, Clock, Award, Cpu, Lock, Compass, Home as HomeIcon, CheckCircle2 
 } from 'lucide-react';
 import { categories } from '../data/articles';
+import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
   onSelectCategory: (slug: string) => void;
@@ -31,14 +32,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Column */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#0b2721] border border-[#5fdee7] flex items-center justify-center shadow-[0_0_12px_rgba(95,222,231,0.3)]">
-                <Radio className="w-4 h-4 text-[#5fdee7]" />
-              </div>
-              <span className="text-xl font-black font-display text-white tracking-tight">
-                dailytechrader
-              </span>
-            </div>
+            <BrandLogo size="md" showTagline={false} />
 
             <p className="text-xs text-slate-400 leading-relaxed font-sans">
               ENGINEERING & CONSUMER TECH JOURNAL - PUBLISHED DAILY. Dedicated to objective, empirical hardware bench testing, semiconductor microarchitectures, artificial intelligence reasoning models, and cybersecurity protocols.

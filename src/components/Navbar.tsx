@@ -4,6 +4,7 @@ import {
   Cpu, Lock, Home as HomeIcon, Info, Mail, Users, Compass
 } from 'lucide-react';
 import { categories } from '../data/articles';
+import { BrandLogo } from './BrandLogo';
 
 interface NavbarProps {
   activeCategory: string | null;
@@ -62,26 +63,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             onSelectCategory(null);
             setMobileMenuOpen(false);
           }}
-          className="flex items-center gap-3 cursor-pointer group select-none"
+          className="cursor-pointer"
         >
-          {/* High-Tech Glowing Radar Favicon / Emblem */}
-          <div className="relative w-9 h-9 rounded-xl bg-[#0b2721] border border-[#5fdee7] flex items-center justify-center shadow-[0_0_15px_rgba(95,222,231,0.35)] group-hover:border-[#ffcc00] group-hover:shadow-[0_0_20px_rgba(255,204,0,0.5)] transition-all duration-300">
-            {/* Spinning Radar Beam */}
-            <div className="absolute inset-1 rounded-full border border-[#5fdee7]/40 pointer-events-none" />
-            <div className="absolute w-2 h-2 rounded-full bg-[#ffcc00] shadow-[0_0_8px_#ffcc00]" />
-            <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-              <div className="w-full h-full bg-gradient-to-tr from-transparent via-[#5fdee7]/20 to-transparent animate-radar" />
-            </div>
-          </div>
-
-          <div>
-            <div className="text-xl md:text-2xl font-black font-display tracking-tight text-white group-hover:text-[#ffcc00] transition-colors leading-none">
-              dailytechrader
-            </div>
-            <div className="text-[9px] font-mono tracking-wider text-slate-400 group-hover:text-[#5fdee7] transition-colors uppercase mt-0.5">
-              Consumer Tech & AI Journal
-            </div>
-          </div>
+          <BrandLogo size="md" showTagline={true} />
         </div>
 
         {/* Desktop Navigation Links */}

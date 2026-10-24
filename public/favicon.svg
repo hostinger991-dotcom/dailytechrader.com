@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e2f27" />
+      <stop offset="50%" stop-color="#081c18" />
+      <stop offset="100%" stop-color="#040f0c" />
+    </linearGradient>
+
+    <!-- Cyan Glow Gradient -->
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7bf7ff" />
+      <stop offset="50%" stop-color="#5fdee7" />
+      <stop offset="100%" stop-color="#149694" />
+    </linearGradient>
+
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff066" />
+      <stop offset="60%" stop-color="#ffcc00" />
+      <stop offset="100%" stop-color="#e69500" />
+    </linearGradient>
+
+    <!-- Radar Sweep Conic Effect -->
+    <radialGradient id="radarSweep" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5fdee7" stop-opacity="0.45" />
+      <stop offset="70%" stop-color="#5fdee7" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#5fdee7" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Glow Filter for Beacon & Reticle -->
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="goldGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Shield Container (Squircle) -->
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#bgGrad)" stroke="url(#cyanGrad)" stroke-width="3" />
+  
+  <!-- Inner Technical Inset Border -->
+  <rect x="9" y="9" width="110" height="110" rx="25" fill="none" stroke="#5fdee7" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="6 3" />
+
+  <!-- Corner Precision Technical Ticks -->
+  <path d="M 20 14 L 14 14 L 14 20" fill="none" stroke="#5fdee7" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 108 14 L 114 14 L 114 20" fill="none" stroke="#5fdee7" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 20 114 L 14 114 L 14 108" fill="none" stroke="#5fdee7" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M 108 114 L 114 114 L 114 108" fill="none" stroke="#5fdee7" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Concentric Radar Range Rings -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.3" stroke-dasharray="3 3" />
+  <circle cx="64" cy="64" r="32" fill="none" stroke="#5fdee7" stroke-width="1.8" stroke-opacity="0.5" />
+  <circle cx="64" cy="64" r="18" fill="none" stroke="#5fdee7" stroke-width="2" stroke-opacity="0.75" />
+
+  <!-- Radar Scope Active Detection Sweep Sector -->
+  <path d="M 64 64 L 108 42 A 46 46 0 0 0 64 18 Z" fill="url(#radarSweep)" />
+
+  <!-- Reticle Crosshairs with Precision Ticks -->
+  <line x1="64" y1="14" x2="64" y2="114" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.35" />
+  <line x1="14" y1="64" x2="114" y2="64" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.35" />
+  
+  <!-- Subtle 45-degree Guide Radians -->
+  <line x1="32" y1="32" x2="42" y2="42" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.4" />
+  <line x1="96" y1="32" x2="86" y2="42" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.4" />
+  <line x1="32" y1="96" x2="42" y2="86" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.4" />
+  <line x1="96" y1="96" x2="86" y2="86" stroke="#5fdee7" stroke-width="1.5" stroke-opacity="0.4" />
+
+  <!-- Stylized Geometric "D" & "R" Monogram Silhouette Integrated into Radar -->
+  <!-- Left Stem representing "D" & "R" anchor -->
+  <path d="M 44 42 L 44 86" stroke="url(#cyanGrad)" stroke-width="5" stroke-linecap="round" />
+  <!-- Upper D Loop -->
+  <path d="M 44 42 C 60 42, 70 47, 70 56 C 70 65, 60 70, 44 70" fill="none" stroke="url(#cyanGrad)" stroke-width="4.5" stroke-linecap="round" />
+  <!-- R Diagonal Leg reaching out -->
+  <path d="M 58 68 L 78 86" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linecap="round" filter="url(#goldGlow)" />
+
+  <!-- Active Ping Signal Node (Radar Blip #1 - Gold) -->
+  <circle cx="88" cy="38" r="4.5" fill="url(#goldGrad)" filter="url(#goldGlow)" />
+  <circle cx="88" cy="38" r="8" fill="none" stroke="#ffcc00" stroke-width="1.5" stroke-opacity="0.6" />
+
+  <!-- Secondary Blip (Cyan) -->
+  <circle cx="34" cy="78" r="3" fill="#5fdee7" filter="url(#softGlow)" />
+
+  <!-- Central High-Precision Focal Core -->
+  <circle cx="64" cy="64" r="5" fill="#081c18" stroke="url(#goldGrad)" stroke-width="2.5" />
+  <circle cx="64" cy="64" r="2.2" fill="url(#goldGrad)" filter="url(#goldGlow)" />
+</svg>
