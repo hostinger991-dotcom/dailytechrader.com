@@ -15,14 +15,14 @@ export const categories = [
   {
     name: 'Consumer Gadgets',
     slug: 'consumer-gadgets',
-    count: 5,
+    count: 6,
     tagline: 'Hardware teardowns, silicon benchmarks, mobile optics & battery testing',
     color: '#00f0ff'
   },
   {
     name: 'AI & Future Tech',
     slug: 'ai-future-tech',
-    count: 5,
+    count: 6,
     tagline: 'Diffusion transformers, enterprise agents, autonomous drones & humanoid robotics',
     color: '#ff007f'
   },
@@ -43,6 +43,8 @@ export const categories = [
 ];
 
 export const tickerHeadlines = [
+  { tag: 'FOLDABLE LABS', text: 'Waterdrop Hinge Durability Tests Confirm 400,000 Flex Cycles with Sub-0.11mm Crease Depths', link: 'foldable-phone-hinge-durability-test' },
+  { tag: 'EDGE AI SILICON', text: '45+ TOPS Mobile NPUs Execute 8B INT4 Models at 24 Tokens/Sec Under 4W Power Budgets', link: 'small-language-models-on-device-npu' },
   { tag: 'BREAKING HARDWARE', text: '3nm Foundry Yields Surge: Next-Gen Flagships Surpass 10,800 Multi-Core Scores', link: 'best-flagship-smartphone-deals' },
   { tag: 'AI BENCHMARKS', text: 'Diffusion Transformers Eliminate Synthetic Rendering Artifacts in Real-Time 4K Video', link: 'latest-generative-ai-tools' },
   { tag: 'SECURITY ALERT', text: 'Zero-Knowledge Passkeys Standardized Across Major Mobile and Desktop OS Platforms', link: 'secure-password-manager-comparison' },

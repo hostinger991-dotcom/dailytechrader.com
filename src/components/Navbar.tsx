@@ -175,7 +175,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <span>Home Feed</span>
-              <span className="text-[10px]">20 Reports</span>
+              <span className="text-[10px]">All Reports</span>
             </button>
 
             {categories.map((cat) => (
@@ -195,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {getCategoryIcon(cat.slug)}
                   {cat.name}
                 </span>
-                <span className="text-[10px] opacity-70">5 Articles</span>
+                <span className="text-[10px] opacity-70">{cat.count} Articles</span>
               </button>
             ))}
           </div>
