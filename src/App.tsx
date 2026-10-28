@@ -4,6 +4,7 @@ import { Article } from './types/article';
 import { Navbar } from './components/Navbar';
 import { TickerTape } from './components/TickerTape';
 import { ArticleCard } from './components/ArticleCard';
+import { Sidebar } from './components/Sidebar';
 import { ArticleReaderModal } from './components/ArticleReaderModal';
 import { SearchModal } from './components/SearchModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
@@ -107,13 +108,13 @@ export default function App() {
     return result;
   }, [activeCategory, sortBy]);
 
-  // Lead Featured Article (Article #1 or first of selected category)
+  // Lead Featured Article (Hero Article)
   const leadArticle = displayedArticles[0] || allArticles[0];
   const gridArticles = displayedArticles.slice(1);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#081c18] text-slate-100 font-sans selection:bg-[#ffcc00] selection:text-black">
-      {/* 1. Brand Navbar */}
+      {/* 1. Dual-Tier Corporate Header (like ke.com.pk top bar + mega menu) */}
       <Navbar
         activeCategory={activeCategory}
         onSelectCategory={(slug) => {
@@ -129,6 +130,7 @@ export default function App() {
         onOpenAbout={() => setEditorialModalType('about')}
         onOpenContact={() => setEditorialModalType('contact')}
         onOpenEditors={() => setEditorialModalType('editors')}
+        onOpenStandards={() => setEditorialModalType('standards')}
         bookmarkedCount={bookmarkedIds.length}
       />
 
@@ -141,10 +143,9 @@ export default function App() {
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10 space-y-8 md:space-y-12">
-        {/* Category Hero Header Banner */}
-        <div className="relative rounded-2xl overflow-hidden p-6 md:p-10 border border-[#5fdee7]/25 bg-gradient-to-br from-[#0c2e27] via-[#081f1b] to-[#040e0c] shadow-2xl">
-          {/* Subtle tech background grid */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 space-y-8">
+        {/* Category Hero Banner */}
+        <div className="relative rounded-2xl overflow-hidden p-6 md:p-8 border border-[#5fdee7]/25 bg-gradient-to-br from-[#0c2e27] via-[#081f1b] to-[#040e0c] shadow-2xl">
           <div className="absolute inset-0 bg-[radial-gradient(#5fdee7_1px,transparent_1px)] [background-size:20px_20px] opacity-10 pointer-events-none" />
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#5fdee7]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -154,17 +155,17 @@ export default function App() {
                 PEER-REVIEWED JOURNAL
               </span>
               <span className="text-xs font-mono text-slate-400">
-                • 20 Full-Length Engineering Reports
+                • {allArticles.length} Full-Length Technical Investigations
               </span>
             </div>
 
-            <h1 className="text-2xl md:text-5xl font-black font-display tracking-tight text-white uppercase leading-tight">
+            <h1 className="text-2xl md:text-4xl font-black font-display tracking-tight text-white uppercase leading-tight">
               {activeCategory
                 ? categories.find((c) => c.slug === activeCategory)?.name
                 : 'Engineering & Consumer Tech Journal'}
             </h1>
 
-            <p className="text-xs md:text-base text-slate-300 font-sans leading-relaxed">
+            <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed">
               {activeCategory
                 ? categories.find((c) => c.slug === activeCategory)?.tagline
                 : 'Rigorous technical investigations, 3nm silicon teardowns, generative AI architecture audits, zero-knowledge cryptographic benchmarks, and smart infrastructure engineering.'}
@@ -180,7 +181,7 @@ export default function App() {
                     : 'bg-[#0b2721] text-slate-300 hover:text-white border border-[#5fdee7]/20'
                 }`}
               >
-                All 20 Reports
+                All {allArticles.length} Reports
               </button>
 
               {categories.map((cat) => (
@@ -200,189 +201,212 @@ export default function App() {
           </div>
         </div>
 
-        {/* Lead Featured Article Spotlight (Hero Article) */}
-        {leadArticle && (
-          <section className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#5fdee7]">
-                <Radio className="w-4 h-4 text-[#ffcc00] animate-pulse" />
-                <span>LEAD TECHNICAL INVESTIGATION // REPORT 01</span>
-              </div>
-              <span className="text-[11px] font-mono text-slate-400">
-                {leadArticle.wordCount} words • 6 Data Panels
-              </span>
-            </div>
-
-            <div
-              onClick={() => setSelectedArticle(leadArticle)}
-              className="article-card-interactive group rounded-2xl p-6 md:p-8 cursor-pointer border border-[#5fdee7]/30 flex flex-col lg:flex-row gap-6 md:gap-8 items-center"
-            >
-              {/* Realistic Photorealistic Infographic Preview */}
-              <div className="w-full lg:w-1/2">
-                <div className="relative rounded-xl overflow-hidden border border-[#5fdee7]/30 group-hover:border-[#ffcc00] transition-all aspect-video bg-black/60 shadow-xl">
-                  <img
-                    src={resolveImageUrl(leadArticle.imageSrc)}
-                    alt={leadArticle.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      const filename = leadArticle.imageSrc.split('/').pop();
-                      if (filename && !target.src.endsWith(`/images/${filename}`)) {
-                        target.src = `/images/${filename}`;
-                      }
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-3 left-3 flex items-center gap-2">
-                    <span className="px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[#5fdee7] group-hover:text-[#ffcc00] border border-[#5fdee7]/40 text-xs font-mono font-bold transition-colors">
-                      INFOGRAPHIC #{leadArticle.infographic.promptNumber}
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#5fdee7]/20 text-[#5fdee7] border border-[#5fdee7]/30">
-                      HIGH-TECH 6 PANELS
-                    </span>
+        {/* 5. Main Content: 2-Column Layout (Left 8 cols = Articles Feed, Right 4 cols = Sticky Portal Sidebar) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Main Feed Column */}
+          <div className="lg:col-span-8 space-y-8">
+            {/* Lead Featured Article Spotlight (Hero Article) */}
+            {leadArticle && (
+              <section className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-[#5fdee7]">
+                    <Radio className="w-4 h-4 text-[#ffcc00] animate-pulse" />
+                    <span>LEAD TECHNICAL INVESTIGATION // REPORT 01</span>
                   </div>
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono">
-                    <span className="text-white font-bold truncate">
-                      {leadArticle.infographic.title}
-                    </span>
-                    <span className="text-[#ffcc00] shrink-0 font-bold ml-2">
-                      Click to Expand Full Report
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Lead Details */}
-              <div className="w-full lg:w-1/2 space-y-3.5">
-                <div className="flex items-center gap-2">
-                  <span className="card-category-badge px-2.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded border border-[#5fdee7]/40 bg-[#0b2721] text-[#5fdee7]">
-                    {leadArticle.category}
-                  </span>
-                  <span className="text-xs font-mono text-slate-400">
-                    {leadArticle.readTime}
+                  <span className="text-[11px] font-mono text-slate-400">
+                    {leadArticle.wordCount} words • 6 Data Panels
                   </span>
                 </div>
 
-                <h2 className="card-title text-xl md:text-3xl font-extrabold font-display uppercase tracking-tight text-white leading-tight transition-colors">
-                  {leadArticle.title}
-                </h2>
-
-                <p className="text-xs md:text-sm text-slate-300 font-sans leading-relaxed line-clamp-3">
-                  {leadArticle.excerpt}
-                </p>
-
-                {/* Key specs highlight */}
-                <div className="p-3 rounded-lg bg-black/40 border border-white/10 text-xs font-mono grid grid-cols-2 gap-2">
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">VERIFIED TARGET:</span>
-                    <span className="text-[#ffcc00] font-bold">{leadArticle.keyword}</span>
-                  </div>
-                  <div>
-                    <span className="text-slate-400 block text-[10px]">BENCHMARK VERDICT:</span>
-                    <span className="text-emerald-400 font-bold truncate block">TSMC 3nm N3E Approved</span>
-                  </div>
-                </div>
-
-                <div className="pt-2 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={leadArticle.author.avatar}
-                      alt={leadArticle.author.name}
-                      className="w-8 h-8 rounded-full object-cover ring-1 ring-[#5fdee7]"
-                    />
-                    <div>
-                      <div className="text-xs font-bold text-white">{leadArticle.author.name}</div>
-                      <div className="text-[10px] text-slate-400 font-mono">{leadArticle.publishDate}</div>
+                <div
+                  onClick={() => setSelectedArticle(leadArticle)}
+                  className="article-card-interactive group rounded-2xl p-5 md:p-6 cursor-pointer border border-[#5fdee7]/30 flex flex-col md:flex-row gap-6 items-center"
+                >
+                  {/* Infographic Preview */}
+                  <div className="w-full md:w-1/2">
+                    <div className="relative rounded-xl overflow-hidden border border-[#5fdee7]/30 group-hover:border-[#ffcc00] transition-all aspect-video bg-black/60 shadow-xl">
+                      <img
+                        src={resolveImageUrl(leadArticle.imageSrc)}
+                        alt={leadArticle.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          const filename = leadArticle.imageSrc.split('/').pop();
+                          if (filename && !target.src.endsWith(`/images/${filename}`)) {
+                            target.src = `/images/${filename}`;
+                          }
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none" />
+                      <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                        <span className="px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-md text-[#5fdee7] group-hover:text-[#ffcc00] border border-[#5fdee7]/40 text-[10px] font-mono font-bold transition-colors">
+                          INFOGRAPHIC #{leadArticle.infographic.promptNumber}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-[11px] font-mono">
+                        <span className="text-white font-bold truncate">
+                          {leadArticle.infographic.title}
+                        </span>
+                        <span className="text-[#ffcc00] shrink-0 font-bold ml-2">
+                          Expand Full →
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <button className="card-action-btn flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono font-bold bg-[#5fdee7] text-black transition-all">
-                    <span>Read Full 1,200+ Word Investigation</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
+                  {/* Lead Details */}
+                  <div className="w-full md:w-1/2 space-y-3">
+                    <div className="flex items-center gap-2">
+                      <span className="card-category-badge px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider rounded border border-[#5fdee7]/40 bg-[#0b2721] text-[#5fdee7]">
+                        {leadArticle.category}
+                      </span>
+                      <span className="text-[11px] font-mono text-slate-400">
+                        {leadArticle.readTime}
+                      </span>
+                    </div>
+
+                    <h2 className="card-title text-lg md:text-2xl font-extrabold font-display uppercase tracking-tight text-white leading-tight transition-colors">
+                      {leadArticle.title}
+                    </h2>
+
+                    <p className="text-xs text-slate-300 font-sans leading-relaxed line-clamp-3">
+                      {leadArticle.excerpt}
+                    </p>
+
+                    {/* Key specs highlight */}
+                    <div className="p-2.5 rounded-lg bg-black/40 border border-white/10 text-[11px] font-mono grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-slate-400 block text-[9px]">VERIFIED TARGET:</span>
+                        <span className="text-[#ffcc00] font-bold truncate block">{leadArticle.keyword}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 block text-[9px]">BENCHMARK VERDICT:</span>
+                        <span className="text-emerald-400 font-bold truncate block">TSMC 3nm N3E Approved</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-1 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={leadArticle.author.avatar}
+                          alt={leadArticle.author.name}
+                          className="w-7 h-7 rounded-full object-cover ring-1 ring-[#5fdee7]"
+                        />
+                        <div>
+                          <div className="text-xs font-bold text-white">{leadArticle.author.name}</div>
+                          <div className="text-[9px] text-slate-400 font-mono">{leadArticle.publishDate}</div>
+                        </div>
+                      </div>
+
+                      <button className="card-action-btn flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-[#5fdee7] text-black transition-all">
+                        <span>Read Full Report</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
                 </div>
+              </section>
+            )}
+
+            {/* Filter & Sorting Controls */}
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
+              <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
+                <Layers className="w-4 h-4 text-[#5fdee7]" />
+                <span>
+                  Showing <strong className="text-white">{displayedArticles.length}</strong> of {allArticles.length} Reports
+                </span>
+                {activeCategory && (
+                  <span className="text-[#ffcc00] font-bold">
+                    ({categories.find((c) => c.slug === activeCategory)?.name})
+                  </span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 text-xs font-mono">
+                <span className="text-slate-400 flex items-center gap-1">
+                  <ArrowUpDown className="w-3.5 h-3.5" /> Sort:
+                </span>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as any)}
+                  className="px-2.5 py-1.5 rounded-lg bg-[#0b2721] border border-[#5fdee7]/30 text-xs font-mono text-white focus:outline-none focus:border-[#ffcc00] cursor-pointer"
+                >
+                  <option value="default">Default Order</option>
+                  <option value="wordCount">Deepest Analysis (Word Count)</option>
+                  <option value="readTime">Longest Read Time</option>
+                </select>
               </div>
             </div>
-          </section>
-        )}
 
-        {/* Filter & Sorting Controls */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
-          <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-            <Layers className="w-4 h-4 text-[#5fdee7]" />
-            <span>
-              Showing <strong className="text-white">{displayedArticles.length}</strong> of 20 Technical Reports
-            </span>
-            {activeCategory && (
-              <span className="text-[#ffcc00] font-bold">
-                (Filtered by {categories.find((c) => c.slug === activeCategory)?.name})
-              </span>
-            )}
+            {/* Post Cards Grid (Crisp 2-Column grid with glowing yellow hover effect) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {gridArticles.map((article) => (
+                <ArticleCard
+                  key={article.id}
+                  article={article}
+                  onSelect={(a) => setSelectedArticle(a)}
+                  isBookmarked={bookmarkedIds.includes(article.id)}
+                  onToggleBookmark={handleToggleBookmarkInCard}
+                />
+              ))}
+            </div>
+
+            {/* AdSense Compliance & Editorial Standards Banner */}
+            <section className="rounded-2xl p-6 border border-[#5fdee7]/30 bg-[#061411] space-y-4 shadow-xl">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#5fdee7] uppercase tracking-wider font-bold">
+                <Award className="w-4 h-4 text-[#ffcc00]" />
+                <span>DAILYTECHRADER EDITORIAL PLEDGE // AD-NETWORK APPROVAL COMPLIANCE</span>
+              </div>
+
+              <h3 className="text-lg md:text-xl font-bold font-display text-white uppercase">
+                Built for Readers, Engineered for Transparency
+              </h3>
+
+              <p className="text-xs text-slate-300 leading-relaxed font-sans">
+                Every review, benchmark, and architectural guide published on dailytechrader meets rigorous technical standards. We provide clean indexable structures, sub-second page rendering, certified GDPR/CCPA privacy safeguards, and transparent contact methods with our editorial newsroom staff.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1 text-xs font-mono">
+                <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
+                  <div className="text-[#5fdee7] font-bold">{allArticles.length}/{allArticles.length} Full Reports</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Targeting 1,200–1,300 technical words per keyword topic.</div>
+                </div>
+                <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
+                  <div className="text-[#ffcc00] font-bold">{allArticles.length} Unique Infographics</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Custom 6-panel vector visual blueprints.</div>
+                </div>
+                <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
+                  <div className="text-emerald-400 font-bold">Direct Verification</div>
+                  <div className="text-slate-400 text-[10px] mt-0.5">Official WhatsApp (03046308630) & Press Email routing.</div>
+                </div>
+              </div>
+            </section>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="text-slate-400 flex items-center gap-1">
-              <ArrowUpDown className="w-3.5 h-3.5" /> Sort:
-            </span>
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
-              className="px-2.5 py-1.5 rounded-lg bg-[#0b2721] border border-[#5fdee7]/30 text-xs font-mono text-white focus:outline-none focus:border-[#ffcc00] cursor-pointer"
-            >
-              <option value="default">Default Numerical Order (01–20)</option>
-              <option value="wordCount">Deepest Analysis (Word Count)</option>
-              <option value="readTime">Longest Read Time</option>
-            </select>
-          </div>
-        </div>
-
-        {/* 20 Articles Grid (Special Hover Effect transforms into vivid glowing full yellow accent) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {gridArticles.map((article) => (
-            <ArticleCard
-              key={article.id}
-              article={article}
-              onSelect={(a) => setSelectedArticle(a)}
-              isBookmarked={bookmarkedIds.includes(article.id)}
-              onToggleBookmark={handleToggleBookmarkInCard}
+          {/* Right Sidebar Column (Sticky Portal Directory & Widgets) */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
+            <Sidebar
+              articles={allArticles}
+              activeCategory={activeCategory}
+              onSelectCategory={(slug) => {
+                setActiveCategory(slug);
+                if (slug) {
+                  window.location.hash = `category-${slug}`;
+                } else {
+                  window.location.hash = '';
+                }
+              }}
+              onSelectArticle={(art) => setSelectedArticle(art)}
+              onOpenContact={() => setEditorialModalType('contact')}
+              onOpenStandards={() => setEditorialModalType('standards')}
+              onOpenPrivacy={() => setEditorialModalType('privacy')}
             />
-          ))}
+          </div>
         </div>
-
-        {/* Mission Statement Box */}
-        <section className="rounded-2xl p-6 md:p-8 border border-[#5fdee7]/30 bg-[#061411] space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-xs font-mono text-[#5fdee7] uppercase tracking-wider font-bold">
-            <Award className="w-4 h-4 text-[#ffcc00]" />
-            <span>DAILYTECHRADER EDITORIAL PLEDGE // AD-NETWORK APPROVAL COMPLIANCE</span>
-          </div>
-
-          <h3 className="text-xl md:text-2xl font-bold font-display text-white uppercase">
-            Built for Readers, Engineered for Transparency
-          </h3>
-
-          <p className="text-xs md:text-sm text-slate-300 leading-relaxed font-sans">
-            Every review, benchmark, and architectural guide published on dailytechrader meets rigorous technical standards. We provide clean indexable structures, sub-second page rendering, certified GDPR/CCPA privacy safeguards, and transparent contact methods with our editorial newsroom staff.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs font-mono">
-            <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
-              <div className="text-[#5fdee7] font-bold">20/20 Full Reports</div>
-              <div className="text-slate-400 text-[11px] mt-0.5">Targeting 1,200–1,300 technical words per keyword topic.</div>
-            </div>
-            <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
-              <div className="text-[#ffcc00] font-bold">20 Unique Infographics</div>
-              <div className="text-slate-400 text-[11px] mt-0.5">6-panel custom prompt-engineered vector visual blueprints.</div>
-            </div>
-            <div className="p-3 rounded-lg bg-[#0b2721] border border-white/10">
-              <div className="text-emerald-400 font-bold">Direct Verification</div>
-              <div className="text-slate-400 text-[11px] mt-0.5">Official WhatsApp (03069256639) & Press Email routing.</div>
-            </div>
-          </div>
-        </section>
       </main>
 
-      {/* 3. Article Reader Modal (100% interactive deep reading view) */}
+      {/* 6. Article Reader Modal (100% interactive deep reading view) */}
       {selectedArticle && (
         <ArticleReaderModal
           article={selectedArticle}
@@ -394,7 +418,7 @@ export default function App() {
         />
       )}
 
-      {/* 4. Search Modal */}
+      {/* 7. Search Modal */}
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
@@ -402,7 +426,7 @@ export default function App() {
         onSelectArticle={(art) => setSelectedArticle(art)}
       />
 
-      {/* 5. Bookmarks Drawer */}
+      {/* 8. Bookmarks Drawer */}
       <BookmarksDrawer
         isOpen={isBookmarksOpen}
         onClose={() => setIsBookmarksOpen(false)}
@@ -412,7 +436,7 @@ export default function App() {
         onClearAll={handleClearAllBookmarks}
       />
 
-      {/* 6. Editorial Modals (About, Contact, Editors, Standards, Privacy, Terms) */}
+      {/* 9. Editorial Modals (About, Contact, Editors, Standards, Privacy, Terms) */}
       {editorialModalType && (
         <EditorialModal
           type={editorialModalType}
@@ -420,10 +444,10 @@ export default function App() {
         />
       )}
 
-      {/* 7. GDPR Cookie Notification Banner */}
+      {/* 10. GDPR Cookie Notification Banner */}
       <GDPRBanner onOpenPrivacy={() => setEditorialModalType('privacy')} />
 
-      {/* 8. Footer */}
+      {/* 11. Corporate 4-Column Footer */}
       <Footer
         onSelectCategory={(slug) => {
           setActiveCategory(slug);

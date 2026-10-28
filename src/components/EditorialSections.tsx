@@ -186,7 +186,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
                   <a 
-                    href="tel:03069256639"
+                    href="tel:03046308630"
                     className="p-3 rounded-lg bg-black/50 border border-white/10 hover:border-[#ffcc00] transition-colors flex items-center gap-3 text-white"
                   >
                     <div className="p-2 rounded-md bg-[#5fdee7]/20 text-[#5fdee7]">
@@ -194,12 +194,12 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                     </div>
                     <div>
                       <span className="text-[10px] text-slate-400 block">Phone / WhatsApp Desk:</span>
-                      <span className="font-bold text-[#ffcc00]">03069256639</span>
+                      <span className="font-bold text-[#ffcc00]">03046308630</span>
                     </div>
                   </a>
 
                   <a 
-                    href="mailto:sagheerofficial21dnb@gmail.com"
+                    href="mailto:ibrahimtrader019@gmail.com"
                     className="p-3 rounded-lg bg-black/50 border border-white/10 hover:border-[#5fdee7] transition-colors flex items-center gap-3 text-white"
                   >
                     <div className="p-2 rounded-md bg-[#5fdee7]/20 text-[#5fdee7]">
@@ -207,7 +207,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                     </div>
                     <div>
                       <span className="text-[10px] text-slate-400 block">Official Editorial Email:</span>
-                      <span className="font-bold text-slate-200 truncate block">sagheerofficial21dnb@gmail.com</span>
+                      <span className="font-bold text-slate-200 truncate block">ibrahimtrader019@gmail.com</span>
                     </div>
                   </a>
                 </div>
@@ -226,7 +226,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                     Dispatch Transmitted to Newsroom
                   </h4>
                   <p className="text-xs text-slate-300">
-                    Thank you. Your message has been encrypted and routed directly to the dailytechrader editorial desk at <strong className="text-white">sagheerofficial21dnb@gmail.com</strong>.
+                    Thank you. Your message has been encrypted and routed directly to the dailytechrader editorial desk at <strong className="text-white">ibrahimtrader019@gmail.com</strong>.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -271,7 +271,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                       <label className="block text-[11px] font-mono text-slate-400 mb-1">Phone / WhatsApp Number</label>
                       <input
                         type="text"
-                        placeholder="e.g. +92 306 9256639"
+                        placeholder="e.g. +92 304 6308630"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-3 py-2 rounded-lg bg-black/60 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#5fdee7]"
@@ -377,7 +377,7 @@ export const EditorialModal: React.FC<EditorialModalProps> = ({ type, onClose })
                 </p>
                 <h4 className="font-mono font-bold text-white uppercase text-[#5fdee7]">Your Rights</h4>
                 <p>
-                  Under GDPR Article 17 and CCPA, you hold the right to request access to or permanent erasure of any personal telemetry data by contacting our Data Protection Officer at <strong>sagheerofficial21dnb@gmail.com</strong>.
+                  Under GDPR Article 17 and CCPA, you hold the right to request access to or permanent erasure of any personal telemetry data by contacting our Data Protection Officer at <strong>ibrahimtrader019@gmail.com</strong>.
                 </p>
               </div>
             </div>
