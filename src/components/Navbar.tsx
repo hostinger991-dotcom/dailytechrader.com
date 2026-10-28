@@ -16,6 +16,7 @@ interface NavbarProps {
   onOpenContact: () => void;
   onOpenEditors: () => void;
   onOpenStandards: () => void;
+  onOpenSitemap?: () => void;
   bookmarkedCount: number;
 }
 
@@ -28,6 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenContact,
   onOpenEditors,
   onOpenStandards,
+  onOpenSitemap,
   bookmarkedCount
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -134,6 +136,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               Editorial Standards
             </button>
             <span className="hidden sm:inline text-white/20">|</span>
+            {onOpenSitemap && (
+              <>
+                <button
+                  onClick={onOpenSitemap}
+                  className="hidden md:inline hover:text-[#ffcc00] text-[#ffcc00] font-bold transition-colors cursor-pointer"
+                >
+                  Sitemap
+                </button>
+                <span className="hidden md:inline text-white/20">|</span>
+              </>
+            )}
             <button
               onClick={onOpenContact}
               className="hover:text-[#5fdee7] font-semibold transition-colors cursor-pointer"
@@ -286,6 +299,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     Editorial Standards
                   </button>
+                  {onOpenSitemap && (
+                    <button
+                      onClick={() => {
+                        onOpenSitemap();
+                        setActiveDropdown(null);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-xs font-mono text-[#ffcc00] hover:text-white hover:bg-white/5 font-bold transition-colors cursor-pointer"
+                    >
+                      HTML Sitemap & Directory
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       onOpenContact();

@@ -3,7 +3,7 @@ import { Article } from '../types/article';
 import { categories } from '../data/articles';
 import { 
   TrendingUp, Mail, Phone, ChevronRight, 
-  Layers, ArrowRight, CheckCircle2
+  Layers, ArrowRight, CheckCircle2, Map
 } from 'lucide-react';
 import { resolveImageUrl } from '../utils/imageUtils';
 
@@ -15,6 +15,7 @@ interface SidebarProps {
   onOpenContact: () => void;
   onOpenStandards?: () => void;
   onOpenPrivacy: () => void;
+  onOpenSitemap?: () => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -23,7 +24,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSelectCategory,
   onSelectArticle,
   onOpenContact,
-  onOpenPrivacy
+  onOpenPrivacy,
+  onOpenSitemap
 }) => {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -96,6 +98,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
             );
           })}
         </div>
+
+        {onOpenSitemap && (
+          <div className="pt-2 mt-2 border-t border-white/5">
+            <button
+              onClick={onOpenSitemap}
+              className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-black/40 hover:bg-[#ffcc00] hover:text-black text-[#ffcc00] border border-[#ffcc00]/30 font-mono text-xs font-bold transition-all cursor-pointer"
+            >
+              <Map className="w-3.5 h-3.5" />
+              <span>Open Interactive Sitemap (22 Reports)</span>
+            </button>
+          </div>
+        )}
       </div>
 
       {/* 2. Trending & Most-Read Technical Reports */}

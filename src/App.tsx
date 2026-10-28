@@ -9,6 +9,7 @@ import { ArticleReaderModal } from './components/ArticleReaderModal';
 import { SearchModal } from './components/SearchModal';
 import { BookmarksDrawer } from './components/BookmarksDrawer';
 import { EditorialModal } from './components/EditorialSections';
+import { SitemapModal } from './components/SitemapModal';
 import { GDPRBanner } from './components/GDPRBanner';
 import { Footer } from './components/Footer';
 import { 
@@ -24,6 +25,7 @@ export default function App() {
   const [sortBy, setSortBy] = useState<'default' | 'readTime' | 'wordCount'>('default');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isBookmarksOpen, setIsBookmarksOpen] = useState(false);
+  const [isSitemapOpen, setIsSitemapOpen] = useState(false);
   const [editorialModalType, setEditorialModalType] = useState<'about' | 'contact' | 'editors' | 'standards' | 'privacy' | 'terms' | null>(null);
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
@@ -39,7 +41,7 @@ export default function App() {
     localStorage.setItem('dailytechrader_bookmarks', JSON.stringify(bookmarkedIds));
   }, [bookmarkedIds]);
 
-  // Handle URL hash changes (deep linking #article-best-flagship-smartphone-deals)
+  // Handle URL hash changes (deep linking #article-best-flagship-smartphone-deals, #sitemap, etc.)
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
@@ -52,6 +54,20 @@ export default function App() {
       } else if (hash && hash.startsWith('#category-')) {
         const catSlug = hash.replace('#category-', '');
         setActiveCategory(catSlug);
+      } else if (hash === '#sitemap') {
+        setIsSitemapOpen(true);
+      } else if (hash === '#about') {
+        setEditorialModalType('about');
+      } else if (hash === '#contact') {
+        setEditorialModalType('contact');
+      } else if (hash === '#editors') {
+        setEditorialModalType('editors');
+      } else if (hash === '#standards') {
+        setEditorialModalType('standards');
+      } else if (hash === '#privacy') {
+        setEditorialModalType('privacy');
+      } else if (hash === '#terms') {
+        setEditorialModalType('terms');
       }
     };
 
@@ -131,6 +147,7 @@ export default function App() {
         onOpenContact={() => setEditorialModalType('contact')}
         onOpenEditors={() => setEditorialModalType('editors')}
         onOpenStandards={() => setEditorialModalType('standards')}
+        onOpenSitemap={() => setIsSitemapOpen(true)}
         bookmarkedCount={bookmarkedIds.length}
       />
 
@@ -401,6 +418,7 @@ export default function App() {
               onOpenContact={() => setEditorialModalType('contact')}
               onOpenStandards={() => setEditorialModalType('standards')}
               onOpenPrivacy={() => setEditorialModalType('privacy')}
+              onOpenSitemap={() => setIsSitemapOpen(true)}
             />
           </div>
         </div>
@@ -447,11 +465,37 @@ export default function App() {
       {/* 10. GDPR Cookie Notification Banner */}
       <GDPRBanner onOpenPrivacy={() => setEditorialModalType('privacy')} />
 
-      {/* 11. Corporate 4-Column Footer */}
+      {/* 11. Interactive Sitemap Modal (All links open directly) */}
+      <SitemapModal
+        isOpen={isSitemapOpen}
+        onClose={() => setIsSitemapOpen(false)}
+        articles={allArticles}
+        onSelectArticle={(art) => setSelectedArticle(art)}
+        onSelectCategory={(slug) => {
+          setActiveCategory(slug);
+          if (slug) {
+            window.location.hash = `category-${slug}`;
+          } else {
+            window.location.hash = '';
+          }
+        }}
+        onOpenAbout={() => setEditorialModalType('about')}
+        onOpenContact={() => setEditorialModalType('contact')}
+        onOpenEditors={() => setEditorialModalType('editors')}
+        onOpenStandards={() => setEditorialModalType('standards')}
+        onOpenPrivacy={() => setEditorialModalType('privacy')}
+        onOpenTerms={() => setEditorialModalType('terms')}
+      />
+
+      {/* 12. Corporate 4-Column Footer */}
       <Footer
         onSelectCategory={(slug) => {
           setActiveCategory(slug);
-          window.location.hash = `category-${slug}`;
+          if (slug) {
+            window.location.hash = `category-${slug}`;
+          } else {
+            window.location.hash = '';
+          }
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         onOpenAbout={() => setEditorialModalType('about')}
@@ -460,6 +504,7 @@ export default function App() {
         onOpenStandards={() => setEditorialModalType('standards')}
         onOpenPrivacy={() => setEditorialModalType('privacy')}
         onOpenTerms={() => setEditorialModalType('terms')}
+        onOpenSitemap={() => setIsSitemapOpen(true)}
       />
     </div>
   );

@@ -2,19 +2,20 @@ import React from 'react';
 import { 
   Phone, Mail, Shield, ChevronRight, 
   MapPin, Clock, Award, Cpu, Lock, Compass, Home as HomeIcon, CheckCircle2,
-  Globe, FileText, ArrowRight
+  Globe, FileText, ArrowRight, Map, ExternalLink, Download
 } from 'lucide-react';
 import { categories } from '../data/articles';
 import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
-  onSelectCategory: (slug: string) => void;
+  onSelectCategory: (slug: string | null) => void;
   onOpenAbout: () => void;
   onOpenContact: () => void;
   onOpenEditors: () => void;
   onOpenStandards: () => void;
   onOpenPrivacy: () => void;
   onOpenTerms: () => void;
+  onOpenSitemap: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
@@ -24,11 +25,12 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenEditors,
   onOpenStandards,
   onOpenPrivacy,
-  onOpenTerms
+  onOpenTerms,
+  onOpenSitemap
 }) => {
   return (
     <footer className="bg-[#030d0b] border-t border-[#5fdee7]/25 text-slate-300 relative z-30">
-      {/* 1. Pre-Footer Quick Service & Hotline Bar (like ke.com.pk pre-footer) */}
+      {/* 1. Pre-Footer Quick Service & Hotline Bar */}
       <div className="bg-[#051613] border-b border-white/5 py-6 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -45,7 +47,15 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button
+              onClick={onOpenSitemap}
+              className="px-4 py-2 rounded-lg bg-[#0b2721] hover:bg-[#5fdee7] hover:text-black text-[#5fdee7] border border-[#5fdee7]/40 font-mono font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+            >
+              <Map className="w-3.5 h-3.5 text-[#ffcc00]" />
+              <span>Interactive Sitemap</span>
+            </button>
+
             <button
               onClick={onOpenContact}
               className="px-4 py-2 rounded-lg bg-[#5fdee7] hover:bg-[#ffcc00] text-black font-mono font-bold text-xs transition-colors flex items-center gap-1.5 cursor-pointer"
@@ -83,6 +93,13 @@ export const Footer: React.FC<FooterProps> = ({
                 <Shield className="w-3.5 h-3.5 text-[#5fdee7] shrink-0" />
                 <span>AdSense Quality & GDPR Compliant</span>
               </div>
+              <button
+                onClick={onOpenSitemap}
+                className="flex items-center gap-1.5 text-[#ffcc00] hover:underline cursor-pointer pt-1"
+              >
+                <Map className="w-3.5 h-3.5" />
+                <span>Browse All 22 Reports in Sitemap</span>
+              </button>
             </div>
           </div>
 
@@ -92,6 +109,16 @@ export const Footer: React.FC<FooterProps> = ({
               Technical Coverage
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
+              <li>
+                <button
+                  onClick={() => onSelectCategory(null)}
+                  className="flex items-center gap-1.5 text-slate-300 hover:text-[#ffcc00] transition-colors cursor-pointer text-left group"
+                >
+                  <ChevronRight className="w-3 h-3 text-[#5fdee7] group-hover:translate-x-0.5 transition-transform" />
+                  <span>All Engineering Reports</span>
+                  <span className="text-[10px] text-slate-500">(22)</span>
+                </button>
+              </li>
               {categories.map((cat) => (
                 <li key={cat.slug}>
                   <button
@@ -107,10 +134,10 @@ export const Footer: React.FC<FooterProps> = ({
             </ul>
           </div>
 
-          {/* Column 3: Corporate Governance & Legal */}
+          {/* Column 3: Official Site Pages & Governance (All Pages Listed & Clickable) */}
           <div className="space-y-3">
             <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-[#5fdee7]">
-              Governance & Policies
+              Official Site Pages
             </h4>
             <ul className="space-y-2.5 text-xs font-mono">
               <li>
@@ -137,7 +164,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#ffcc00] transition-colors cursor-pointer flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-3 h-3 text-[#5fdee7]" />
-                  <span>Peer Review & Standards</span>
+                  <span>Editorial Standards & Peer Review</span>
                 </button>
               </li>
               <li>
@@ -155,8 +182,37 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-[#ffcc00] transition-colors cursor-pointer flex items-center gap-1.5"
                 >
                   <ChevronRight className="w-3 h-3 text-[#5fdee7]" />
-                  <span>Terms & Conditions</span>
+                  <span>Terms & Conditions of Service</span>
                 </button>
+              </li>
+              <li>
+                <button
+                  onClick={onOpenContact}
+                  className="hover:text-[#ffcc00] transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <ChevronRight className="w-3 h-3 text-[#5fdee7]" />
+                  <span>Contact Editorial Newsroom</span>
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={onOpenSitemap}
+                  className="hover:text-[#ffcc00] text-[#ffcc00] font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+                >
+                  <Map className="w-3 h-3 text-[#ffcc00]" />
+                  <span>HTML Sitemap & Directory</span>
+                </button>
+              </li>
+              <li>
+                <a
+                  href="/sitemap.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#5fdee7] text-slate-400 transition-colors flex items-center gap-1.5"
+                >
+                  <Download className="w-3 h-3 text-[#5fdee7]" />
+                  <span>XML Sitemap (Raw / Index)</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -202,12 +258,66 @@ export const Footer: React.FC<FooterProps> = ({
               >
                 Open Newsroom Contact Form
               </button>
+
+              <button
+                onClick={onOpenSitemap}
+                className="w-full py-1.5 rounded-lg bg-[#0b2721] hover:bg-white/10 text-[#ffcc00] border border-[#ffcc00]/30 font-mono text-xs transition-colors cursor-pointer text-center flex items-center justify-center gap-1.5"
+              >
+                <Map className="w-3 h-3" />
+                <span>View All 22 Articles in Sitemap</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* 3. Bottom Sub-Footer Bar */}
+      {/* 3. Comprehensive Site Pages Quick Navigation Bar */}
+      <div className="bg-[#020907] border-b border-white/5 py-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono">
+          <span className="text-[10px] uppercase tracking-widest text-[#5fdee7] font-bold">
+            All Site Pages:
+          </span>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] text-slate-400">
+            <button onClick={() => onSelectCategory(null)} className="hover:text-white transition-colors cursor-pointer">
+              Home Feed
+            </button>
+            <span>•</span>
+            <button onClick={onOpenAbout} className="hover:text-white transition-colors cursor-pointer">
+              About Us
+            </button>
+            <span>•</span>
+            <button onClick={onOpenEditors} className="hover:text-white transition-colors cursor-pointer">
+              Editorial Board
+            </button>
+            <span>•</span>
+            <button onClick={onOpenStandards} className="hover:text-white transition-colors cursor-pointer">
+              Editorial Standards
+            </button>
+            <span>•</span>
+            <button onClick={onOpenPrivacy} className="hover:text-white transition-colors cursor-pointer">
+              Privacy Policy
+            </button>
+            <span>•</span>
+            <button onClick={onOpenTerms} className="hover:text-white transition-colors cursor-pointer">
+              Terms of Service
+            </button>
+            <span>•</span>
+            <button onClick={onOpenContact} className="hover:text-white transition-colors cursor-pointer">
+              Contact Desk
+            </button>
+            <span>•</span>
+            <button onClick={onOpenSitemap} className="text-[#ffcc00] hover:underline font-bold transition-colors cursor-pointer">
+              HTML Sitemap
+            </button>
+            <span>•</span>
+            <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" className="text-[#5fdee7] hover:underline transition-colors">
+              XML Sitemap
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Bottom Sub-Footer Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
         <div>
           Copyright © 2026 <strong className="text-slate-300">dailytechrader</strong>. All Rights Reserved.
@@ -219,7 +329,13 @@ export const Footer: React.FC<FooterProps> = ({
           <span>•</span>
           <span>SSL 256-Bit Encrypted</span>
           <span>•</span>
-          <button onClick={onOpenPrivacy} className="hover:text-slate-400">GDPR Compliance</button>
+          <button onClick={onOpenSitemap} className="hover:text-[#ffcc00] text-slate-400">
+            Sitemap Index
+          </button>
+          <span>•</span>
+          <button onClick={onOpenPrivacy} className="hover:text-slate-400">
+            GDPR Compliance
+          </button>
         </div>
       </div>
     </footer>
